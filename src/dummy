@@ -1,0 +1,475 @@
+//for currdate and time
+
+import './App.css';
+
+function App() {
+  const mantasha="mantash"
+  const currdate= new Date().toLocaleDateString()
+  const currtime = new Date().toLocaleTimeString()
+  return (
+    <div className="App">
+      <header className="App-header">
+     <h1 >Hello my name is {mantasha}</h1>
+     <h2>today date is  {currdate}</h2>
+     <h2>today Time is  {currtime}</h2>
+      </header>
+    </div>
+  );
+}
+
+export default App;
+
+
+
+
+
+import './App.css';
+import Header from "./Header"
+
+function App() {
+ 
+  const currdate = new Date();
+  const currtime = currdate.getHours()
+  let greeting = ''
+  if(currtime>=1 && currtime<12){
+   greeting = "Good morning"
+  }else if(currtime>=12 && currtime<20){
+    greeting ="Good noon"
+  }else{
+    greeting ="Good night"
+  }
+ 
+  return (
+    <div className="App">
+      <header className="App-header">
+       <Header name={greeting} />
+
+      </header>
+    </div>
+  );
+}
+
+export default App;
+
+
+
+import React, { useState } from 'react'
+ import "./App.css"
+
+function App (){
+  const [name ,setName] =useState("")
+  const[fname , setFname]=useState("")
+
+  const sumithandler =()=>{
+    setFname(name)
+    setName("")
+  }
+  const changeinput =(e)=>{
+    //console.log(e.target.value);
+    setName(e.target.value)
+    
+  };
+  return(
+    <>
+     <h1>Hello! {fname}</h1> 
+     <input type="text" placeholder='Enter Your name' value={name} onChange={changeinput}/>
+     <button onClick={sumithandler}>Submit</button>
+    </>
+  )
+}
+export default App
+
+
+
+import React, { useState } from 'react'
+ import "./App.css"
+
+function App (){
+  const [name ,setName] =useState("")
+  const[fname , setFname]=useState("")
+
+  const sumithandler =(event)=>{
+    event.preventDefault()
+    setFname(name)
+    setName("")
+  }
+  const changeinput =(e)=>{
+  console.log(e.target.value);
+    setName(e.target.value)
+    
+  };
+  return(
+    <>
+     <h1>Hello! {fname}</h1>
+     <form onSubmit={sumithandler}>
+     <input type="text" placeholder='Enter Your name' value={name} onChange={changeinput}/>
+     <br/>
+     <button type='submit'>Submit :</button>
+     </form>
+    </>
+  )
+}
+export default App
+
+
+
+import React, { useState } from 'react'
+ import "./App.css"
+
+function App (){
+  const [name ,setName] =useState("")
+  const[fname , setFname]=useState("")
+  const[password,setpassword] = useState("")
+  const[fpassword,setfpassword] = useState()
+
+
+  const sumithandler =(event)=>{
+    event.preventDefault()
+    setFname(name)
+    setfpassword(password)
+    setName("")
+    setpassword("")
+  }
+  const changeinput =(e)=>{
+  console.log(e.target.value);
+    setName(e.target.value) 
+  };
+  const changeinputpassword=(e)=>{
+    console.log(e.target.value)
+    setpassword(e.target.value)
+  }
+  return(
+    <>
+     <h1>Hello! {fname} {fpassword}</h1>
+     <form onSubmit={sumithandler}>
+     <input type="text" placeholder='Enter Your name' value={name} onChange={changeinput}/>
+     <br/>
+     <input type="text" placeholder='Enter your password' value={password} onChange={changeinputpassword}/>
+     <br/>
+     <button type='submit'>Submit :</button>
+     </form>
+    </>
+  )
+}
+export default App
+
+
+
+
+import React, { useState } from 'react'
+ import "./App.css"
+
+function App (){
+  const [fullname ,setFullName] =useState({
+    fname:"",
+    password:"",
+    email:""
+  })
+
+
+
+  const sumithandler =(event)=>{
+    event.preventDefault()
+    alert("form submited")
+  }
+  const changeinput =(e)=>{
+  console.log(e.target.value);
+  console.log(e.target.name)
+
+  const value = e.target.value;
+  const name =  e.target.name;
+   
+  setFullName((prevalue)=>{
+  console.log(prevalue)
+  if(name==="fname"){
+    return{
+    fname:value,
+    password:prevalue.password,
+    email:prevalue.email
+  }
+}else if(name==="password"){
+  return{
+  fname:prevalue.fname,
+  password:value,
+  email:prevalue.email
+}
+}else if(name==="email"){
+  return{
+  fname:prevalue.fname,
+  password:prevalue.password,
+  email:value
+}
+}
+  })
+  };
+
+  return(
+    <>
+     <h1>Hello!{fullname.fname}{fullname.password}{fullname.email}</h1>
+     <form onSubmit={sumithandler}>
+     <input type="text" placeholder='Enter Your name'  name="fname" value={fullname.fname} onChange={changeinput}/>
+     <br/>
+     <input type="text" placeholder='Enter your password'  name="password" value={fullname.password} onChange={changeinput}/>
+     <br/>
+     <input type="text" placeholder='Enter your Email'  name="email" value={fullname.email} onChange={changeinput}/>
+     <br/>
+     <button type='submit'>Submit :</button>
+     </form>
+    </>
+  )
+}
+export default App
+
+
+
+
+
+import React, { useState } from 'react'
+ import "./App.css"
+
+function App (){
+  const [fullname ,setFullName] =useState({
+    fname:"",
+    password:"",
+    email:""
+  })
+
+
+
+
+  const sumithandler =(event)=>{
+    event.preventDefault()
+    alert("form submited")
+  }
+  const changeinput =(e)=>{
+  console.log(e.target.value);
+  console.log(e.target.name)
+
+  // const value = e.target.value;
+  // const name =  e.target.name;
+  const{value,name}= e.target;
+   
+  setFullName((prevalue)=>{
+  console.log(prevalue)
+  return{
+    ...prevalue,
+    [name]:value
+  }
+  })
+  };
+
+  return(
+    <>
+     <h1>Hello!{fullname.fname}{fullname.password}
+     </h1>
+     <p>{fullname.email}</p>
+     <form onSubmit={sumithandler}>
+     <input type="text" placeholder='Enter Your name'  name="fname" value={fullname.fname} onChange={changeinput}/>
+     <br/>
+     <input type="text" placeholder='Enter your password'  name="password" value={fullname.password} onChange={changeinput}/>
+     <br/>
+     <input type="text" placeholder='Enter your Email'  name="email" value={fullname.email} onChange={changeinput}/>
+     <br/>
+     <button type='submit'>Submit :</button>
+     </form>
+    </>
+  )
+}
+export default App
+
+
+
+
+import React, { useState } from 'react'
+ import "./App.css"
+
+function App (){
+     const time = new Date().toLocaleTimeString()
+     const [currTime , setCurrTime] =useState(time)
+    const updateTime =()=>{
+      const time = new Date().toLocaleTimeString();
+      setCurrTime(time)
+    }
+    setTimeout(updateTime,1000)
+  return(
+    <>
+    <h1>{currTime}</h1>
+    </>
+  )
+}
+export default App
+
+
+
+
+import React, { useState } from 'react'
+ import "./App.css"
+import { ToDoList } from './Todolist'
+
+function App (){
+  const [addtodo, settodo]=useState("")
+  const [listtodo, setListtodo] =useState([])
+  
+  const addme =()=>{
+    if(addtodo!==""){
+      setListtodo((itemlist)=>{
+        return( 
+          [...itemlist,addtodo]
+        )
+       })
+    
+       settodo("")
+    }else{
+      alert("please add item")
+    }
+  
+  }
+  
+  const changetodo=(e)=>{
+    settodo(e.target.value)
+  }
+  const deleteItem=(id)=>{
+    console.log("delete");
+    setListtodo((itemlist)=>{
+        return itemlist.filter((arrEle,index)=>{
+        return index!==id
+   } )})
+
+     }
+  return(
+    <>
+<div className='main'>
+    <div className='card'>
+      <h1>To Do List</h1>
+      <input type="text" placeholder='Add To Do ' value={addtodo} onChange={changetodo} />
+     
+      <button onClick={addme}>+</button>
+      <ol>
+      {listtodo.map((item , index)=>{
+        return <ToDoList key={index} id={index} text={item  } ondelete={deleteItem}/>
+      })}
+      
+      </ol>
+    </div>
+    </div>
+    </>
+  )
+}
+export default App
+
+
+
+
+import React, { useState } from 'react'
+ import "./App.css"
+import { ToDoList } from './Todolist'
+
+function App (){
+  const [addtodo, settodo]=useState("")
+  const [listtodo, setListtodo] =useState([])
+  
+  const addme =()=>{
+    if(addtodo!==""){
+      setListtodo((itemlist)=>{
+        return( 
+          [...itemlist,addtodo]
+        )
+       })
+    
+       settodo("")
+    }else{
+      alert("please add item")
+    }
+  
+  }
+  
+  const changetodo=(e)=>{
+    settodo(e.target.value)
+  }
+  const deleteItem=(id)=>{
+    console.log("delete");
+    setListtodo((itemlist)=>{
+        return itemlist.filter((arrEle,index)=>{
+        return index!==id
+   } )})
+
+     }
+  return(
+    <>
+<div className='main'>
+    <div className='card'>
+      <h1>To Do List</h1>
+      <input type="text" placeholder='Add To Do ' value={addtodo} onChange={changetodo} />
+     
+      <button onClick={addme}>+</button>
+      <ol>
+      {listtodo.map((item , index)=>{
+        return <ToDoList key={index} id={index} text={item  } ondelete={deleteItem}/>
+      })}
+      
+      </ol>
+    </div>
+    </div>
+    </>
+  )
+}
+export default App
+
+
+
+import React from "react";
+
+export function ToDoList (props){
+  const deletehandler=()=>{
+    props.ondelete(props.id)
+  }
+ return(
+    <>
+      <div className="liststyle">
+      <i className="fa-solid fa-trash" onClick={deletehandler} />
+       <li>{props.text}</li>
+       </div>
+    </>
+ )
+
+}
+
+
+
+import React, { createContext } from 'react'
+ import "./App.css"
+import { ToDoList } from './Todolist'
+
+
+ const firstname = createContext()
+
+function App (){
+  return(
+    <>
+      <firstname.Provider value={"mantasha"}>
+      <ToDoList/>
+      </firstname.Provider>   
+    </>
+  )
+}
+export default App
+export {firstname}
+
+
+
+import React from "react";
+import { firstname } from "./App";
+export function ToDoList(){
+
+ return(
+    <>
+   <firstname.Consumer>
+    {(fname)=>{
+      return <h1>my name is {fname}</h1>
+    }}
+   </firstname.Consumer>
+    <h1></h1>
+    </>
+ )
+
+}

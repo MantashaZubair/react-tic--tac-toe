@@ -1,15 +1,16 @@
-import React from "react";
 
-export function ToDoList (props){
-  const deletehandler=()=>{
-    props.ondelete(props.id)
-  }
+import React from "react";
+import { firstname } from "./App";
+export function ToDoList(){
+
  return(
     <>
-      <div className="liststyle">
-      <i className="fa-solid fa-trash" onClick={deletehandler} />
-       <li>{props.text}</li>
-       </div>
+   <firstname.Consumer>
+    {(fname)=>{
+      return <h1>my name is {fname}</h1>
+    }}
+   </firstname.Consumer>
+    <h1></h1>
     </>
  )
 
